@@ -1,6 +1,6 @@
 # NAME: rails_ruby_bench/discourse
 # VERSION: release
-FROM discourse/base:2.0.20180907
+FROM discourse/base:2.0.20181031
 
 #LABEL maintainer="Noah Gibbs"
 

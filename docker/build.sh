@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build . --no-cache --tag noahgibbs/rails_ruby_bench:build --squash
+docker build . --no-cache --tag bpowers/rails_ruby_bench:build
