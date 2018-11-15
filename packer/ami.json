@@ -12,6 +12,7 @@
         "source_ami": "ami-0afae182eed9d2b46",
         "associate_public_ip_address": true,
         "ssh_keypair_name": "vyse rsa",
+        "ssh_agent_auth": true,
         "instance_type": "m5.2xlarge",
         "subnet_id": "subnet-0d7696ebd8d43b087",
         "ssh_username": "ubuntu",
