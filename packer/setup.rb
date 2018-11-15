@@ -17,7 +17,7 @@ benchmark_software = JSON.load(File.read("#{base}/benchmark_software.json"))
 RAILS_RUBY_BENCH_URL = ENV["RAILS_RUBY_BENCH_URL"]  # Cloned in ami.json
 RAILS_RUBY_BENCH_TAG = ENV["RAILS_RUBY_BENCH_TAG"]
 
-DISCOURSE_DIR = ENV["DISCOURSE_DIR"] || File.join(base, "..", "work", "discourse")
+DISCOURSE_DIR = ENV["DISCOURSE_DIR"] || File.join(base, "rails_ruby_bench", "work", "discourse")
 DISCOURSE_URL = ENV["DISCOURSE_URL"] || benchmark_software["discourse"]["git_url"]
 DISCOURSE_TAG = ENV["DISCOURSE_TAG"] || benchmark_software["discourse"]["git_tag"]
 
