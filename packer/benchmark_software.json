@@ -12,6 +12,36 @@
           "name": "mri-2.5.2",
           "git_url": "git://github.com/ruby/ruby.git",
           "git_tag": "v2_5_2"
+      },
+      {
+          "name": "mri-2.5.2-jemalloc",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "--with-jemalloc"
+      },
+      {
+          "name": "mri-2.5.2-mesh0n",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "CFLAGS='-fno-builtin-malloc' LDFLAGS='-Wl,--no-as-needed -lmesh0n'"
+      },
+      {
+          "name": "mri-2.5.2-mesh0y",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "CFLAGS='-fno-builtin-malloc' LDFLAGS='-Wl,--no-as-needed -lmesh0y'"
+      },
+      {
+          "name": "mri-2.5.2-mesh1y",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "CFLAGS='-fno-builtin-malloc' LDFLAGS='-Wl,--no-as-needed -lmesh1y'"
+      },
+      {
+          "name": "mri-2.5.2-mesh2y",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "CFLAGS='-fno-builtin-malloc' LDFLAGS='-Wl,--no-as-needed -lmesh2y'"
       }
   ]
 }
