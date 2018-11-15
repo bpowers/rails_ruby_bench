@@ -127,7 +127,7 @@ def server_start
   # Start the server
   @started_pid = fork do
     STDERR.print "In PID #{Process.pid}, starting server on port #{PORT_NUM}\n"
-    Dir.chdir "work/discourse"
+    Dir.chdir discourse_dir
     # Start Puma in a new process group to easily kill subprocesses if necessary
     exec({ "RAILS_ENV" => "profile" }, "bundle", "exec", "puma", "--config", "config/puma.rb", "--control", "tcp://127.0.0.1:#{CONTROL_PORT}", "--control-token", CONTROL_TOKEN, "-p", PORT_NUM.to_s, "-w", PUMA_PROCESSES.to_s, "-t", "1:#{PUMA_THREADS}", :pgroup => true)
   end
@@ -398,14 +398,14 @@ test_data = {
     "out_dir" => out_dir,
     "out_file" => out_file || false,
     "no_warm_start" => no_warm_start,
-    "discourse_revision" => `cd work/discourse && git rev-parse HEAD`.chomp,
+    "discourse_revision" => `cd #{discourse_dir} && git rev-parse HEAD`.chomp,
   },
   "environment" => {
     "RUBY_VERSION" => RUBY_VERSION,
     "RUBY_DESCRIPTION" => RUBY_DESCRIPTION,
     "rvm current" => `rvm current 2>&1`.strip,
-    "discourse git status" => `cd work/discourse && git status`,
-    "discourse git sha" => `cd work/discourse && git rev-parse HEAD`.chomp,
+    "discourse git status" => `cd #{discourse_dir} && git status`,
+    "discourse git sha" => `cd #{discourse_dir} && git rev-parse HEAD`.chomp,
     "rails_ruby_bench git status" => `git status`,
     "rails_ruby_bench git sha" => `git rev-parse HEAD`,
     "ec2 instance id" => `wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`,
