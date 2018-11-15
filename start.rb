@@ -19,7 +19,7 @@ total_restart_iterations = 1  # This is essentially a second (or more) iteration
                               # gives 60,000 iterations. Warmup and startup iterations are also repeated. The "bonus" warm start is not.
 workers = 30
 worker_processes = 1
-port_num = 4567
+port_num = 4321
 out_dir = "."
 out_file = nil
 puma_processes = 10
