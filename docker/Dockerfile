@@ -4,7 +4,7 @@ FROM discourse/base:2.0.20181031
 
 #LABEL maintainer="Noah Gibbs"
 
-ENV RRB_GIT_URL https://github.com/noahgibbs/rails_ruby_bench.git
+ENV RRB_GIT_URL https://github.com/bpowers/rails_ruby_bench.git
 
 RUN echo 2.0.`date +%Y%m%d` > /RRB_VERSION
 
