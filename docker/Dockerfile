@@ -6,7 +6,7 @@ FROM discourse/base:2.0.20181031
 
 ENV RRB_GIT_URL https://github.com/bpowers/rails_ruby_bench.git
 
-RUN echo 2.0.`date +%Y%m%d` > /RRB_VERSION
+# RUN echo 2.0.`date +%Y%m%d` > /RRB_VERSION
 
 RUN chown discourse:discourse /var
 
