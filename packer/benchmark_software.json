@@ -12,6 +12,12 @@
           "name": "mri-2.5.2",
           "git_url": "git://github.com/ruby/ruby.git",
           "git_tag": "v2_5_2"
+      },
+      {
+          "name": "mri-2.5.2-jemalloc",
+          "git_url": "git://github.com/ruby/ruby.git",
+          "git_tag": "v2_5_2",
+	  "configure_options": "--with-jemalloc"
       }
   ]
 }
