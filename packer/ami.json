@@ -8,14 +8,17 @@
         "type": "amazon-ebs",
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
-        "region": "us-east-1",
-        "source_ami": "ami-263d0b5c",
-        "instance_type": "t2.small",
+        "region": "us-west-2",
+        "source_ami": "ami-0afae182eed9d2b46",
+        "associate_public_ip_address": true,
+        "ssh_keypair_name": "vyse rsa",
+        "instance_type": "m5.2xlarge",
+        "subnet_id": "subnet-0d7696ebd8d43b087",
         "ssh_username": "ubuntu",
         "ami_name": "rails-ruby-benchmark {{timestamp}}",
-	"run_tags": {
-	    "Name": "Packer RailsRubyBench Builder{{user `builder_suffix`}}"
-	}
+        "run_tags": {
+            "Name": "Packer RailsRubyBench Builder{{user `builder_suffix`}}"
+        }
     }],
     "provisioners": [{
         "type": "shell",
@@ -23,12 +26,12 @@
             "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
         ]
     }, {
-	"type": "file",
-	"source": "ami.json",
-	"destination": "/tmp/ami.json"
+        "type": "file",
+        "source": "ami.json",
+        "destination": "/tmp/ami.json"
     }, {
         "type": "shell",
-	"inline": "sudo mv /tmp/ami.json /home/ubuntu/ami.json"
+        "inline": "sudo mv /tmp/ami.json /home/ubuntu/ami.json"
     }, {
         "type": "shell",
         "script": "discourse_install.sh"
@@ -46,13 +49,13 @@
         "script": "discourse_install_postgres.sh"
     }, {
         "type": "shell",
-	"inline": [
-	    "cd /home/ubuntu && git clone https://github.com/noahgibbs/rails_ruby_bench.git"
-	]
+        "inline": [
+            "cd /home/ubuntu && git clone https://github.com/bpowers/rails_ruby_bench.git"
+        ]
     }, {
-	"type": "file",
-	"source": "benchmark_software.json",
-	"destination": "/home/ubuntu/benchmark_software.json"
+        "type": "file",
+        "source": "benchmark_software.json",
+        "destination": "/home/ubuntu/benchmark_software.json"
     }, {
         "type": "shell",
         "execute_command": "cd /home/ubuntu; . .rvm/scripts/rvm; {{ .Vars }} ruby {{ .Path }}",
@@ -66,7 +69,7 @@
     }, {
         "type": "shell",
         "environment_vars": [
-            "RAILS_RUBY_BENCH_URL=https://github.com/noahgibbs/rails_ruby_bench.git",
+            "RAILS_RUBY_BENCH_URL=https://github.com/bpowers/rails_ruby_bench.git",
             "RAILS_RUBY_BENCH_TAG="
         ],
         "execute_command": "cd /home/ubuntu; . .rvm/scripts/rvm; {{ .Vars }} ruby {{ .Path }}",
@@ -85,22 +88,22 @@
         "type": "shell",
         "script": "nginx_install.sh"
     }, {
-	"type": "file",
-	"source": "rc.local",
-	"destination": "/tmp/rc.local"
+        "type": "file",
+        "source": "rc.local",
+        "destination": "/tmp/rc.local"
     }, {
         "type": "shell",
-	"inline": "sudo mv /tmp/rc.local /etc/rc.local"
+        "inline": "sudo mv /tmp/rc.local /etc/rc.local"
     }, {
-	"type": "shell",
-	"inline": "sudo chmod ugo+x /etc/rc.local"
+        "type": "shell",
+        "inline": "sudo chmod ugo+x /etc/rc.local"
     }, {
-	"type": "file",
-	"source": "nginx.default.conf",
-	"destination": "/tmp/nginx.default.conf"
+        "type": "file",
+        "source": "nginx.default.conf",
+        "destination": "/tmp/nginx.default.conf"
     }, {
-	"type": "shell",
-	"inline": "sudo mv /tmp/nginx.default.conf /etc/nginx/sites-available/default"
+        "type": "shell",
+        "inline": "sudo mv /tmp/nginx.default.conf /etc/nginx/sites-available/default"
     }
   ]
 }
