@@ -268,6 +268,7 @@ end
 
 def with_started_server
   server_start
+  sleep 1
   yield
 ensure
   server_stop
@@ -277,7 +278,7 @@ def with_running_server
   with_started_server do
     failed_iters = 0
     loop do
-      sleep 0.1
+      sleep 1
       output = `curl -f http://localhost:#{PORT_NUM}/ 2>/dev/null`
       if $?.success?
         yield
