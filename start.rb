@@ -127,10 +127,12 @@ def server_start
   # Start the server
   @started_pid = fork do
     STDERR.print "In PID #{Process.pid}, starting server on port #{PORT_NUM}\n"
-    Dir.chdir "work/discourse"
+
     path = `which ruby`
     ruby_version = path.split('/')[-3]
-    mstat_filename = "puma.#{ruby_version}.#{Time.now.to_i}.tsv"
+    mstat_filename = "#{Dir.pwd}/puma.#{ruby_version}.#{Time.now.to_i}.tsv"
+
+    Dir.chdir "work/discourse"
     # Start Puma in a new process group to easily kill subprocesses if necessary
     exec({ "RAILS_ENV" => "profile" }, "mstat", "-o", mstat_filename, "bundle", "exec", "puma", "--config", "config/puma.rb", "--control", "tcp://127.0.0.1:#{CONTROL_PORT}", "--control-token", CONTROL_TOKEN, "-p", PORT_NUM.to_s, "-w", PUMA_PROCESSES.to_s, "-t", "1:#{PUMA_THREADS}", :pgroup => true)
   end
